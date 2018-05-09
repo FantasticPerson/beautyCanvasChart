@@ -2,7 +2,7 @@
  * @Author: dandan.wu 
  * @Date: 2018-05-07 10:22:35 
  * @Last Modified by: dandan.wu
- * @Last Modified time: 2018-05-09 09:15:08
+ * @Last Modified time: 2018-05-09 16:23:28
  */
 
  /*
@@ -36,11 +36,13 @@ function genenrateCanvas(id,dataSet,document){
 
     var width = canvasWidth < canvasHeight ? canvasWidth : canvasHeight;
 
-    var centerX = canvasWidth/2;
-    var centerY = canvasWidth/2+150;
+    var scale = width / 1300
 
-    var a = 480;
-    var b = 210;
+    var centerX = canvasWidth/2;
+    var centerY = canvasWidth/2+150 * scale;
+
+    var a = 480*scale;
+    var b = 210*scale;
 
     var circleLength = 2*Math.PI*b+4*(a-b)
 
@@ -88,7 +90,7 @@ function genenrateCanvas(id,dataSet,document){
         context.strokeStyle = '#008AF8'
         context.scale(1,0.4)
         context.beginPath()
-        context.arc(centerX,centerY,500,0,Math.PI*2);
+        context.arc(centerX,centerY,500*scale,0,Math.PI*2);
         context.closePath()
         
         context.stroke()
@@ -108,8 +110,8 @@ function genenrateCanvas(id,dataSet,document){
     function calcPoint(degree,index){
         var deg = getDegree(degree)
         
-        x = Math.abs(500 * Math.cos(deg))
-        y = Math.abs(500 * Math.sin(deg) * 0.4)
+        x = Math.abs(500 * Math.cos(deg)*scale)
+        y = Math.abs(500 * Math.sin(deg) * 0.4*scale)
 
         if( deg < Math.PI / 2*3 && deg > Math.PI / 2){
             x = -Math.abs(x)
@@ -182,18 +184,18 @@ function genenrateCanvas(id,dataSet,document){
 
         context.save();
         context.fillStyle = "#ECBA1C";
-        context.font = 40+"px serif";
+        context.font = 40*scale+"px serif";
         context.textBaseline = "middle";
         context.textAlign = 'center';
-        context.fillText('公安局'+i, centerX, centerY-460);
+        context.fillText('公安局'+i, centerX, centerY-460*scale);
         context.restore()
 
 
 
         context.save()
         context.fillStyle = 'rgba(236, 186, 28,0.3)'
-        context.moveTo(centerX-100,centerY-430)
-        context.rect(centerX-100,centerY-430,200,80)
+        context.moveTo(centerX-100*scale,centerY-430*scale)
+        context.rect(centerX-100*scale,centerY-430*scale,200*scale,80*scale)
         context.fill()
         context.restore()
 
@@ -201,52 +203,51 @@ function genenrateCanvas(id,dataSet,document){
         context.lineWidth = 2
         context.beginPath()
         context.strokeStyle = '#ECBA1C'
-        context.moveTo(centerX-100,centerY-430)
-        context.lineTo(centerX+100,centerY-430)
+        context.moveTo(centerX-100*scale,centerY-430*scale)
+        context.lineTo(centerX+100*scale,centerY-430*scale)
         context.closePath()
         context.stroke()
 
         context.beginPath()
         context.strokeStyle = '#ECBA1C'
-        context.moveTo(centerX-100,centerY-350)
-        context.lineTo(centerX+100,centerY-350)
+        context.moveTo(centerX-100*scale,centerY-350*scale)
+        context.lineTo(centerX+100*scale,centerY-350*scale)
         context.closePath()
         context.stroke()
         context.restore()
 
         context.save();
         context.fillStyle = "#FFF";
-        context.font = 23+"px serif";
+        context.font = 23*scale+"px serif";
         context.textBaseline = "middle";
         context.textAlign = 'center';
-        context.fillText('共享目录', centerX-50, centerY-405);
+        context.fillText('共享目录', centerX-50*scale, centerY-405*scale);
         context.restore()
 
         context.save();
         context.fillStyle = "#ECBA1C";
-        context.font = 20+"px serif";
+        context.font = 20*scale+"px serif";
         context.textBaseline = "middle";
         context.textAlign = 'center';
-        context.fillText('32', centerX-50, centerY-375);
+        context.fillText('32', centerX-50*scale, centerY-375*scale);
         context.restore()
 
         context.save();
         context.fillStyle = "#FFF";
-        context.font = 23+"px serif";
+        context.font = 23*scale+"px serif";
         context.textBaseline = "middle";
         context.textAlign = 'center';
-        context.fillText('共享数据', centerX+50, centerY-405);
+        context.fillText('共享数据', centerX+50*scale, centerY-405*scale);
         context.restore()
 
         context.save();
         context.fillStyle = "#ECBA1C";
-        context.font = 20+"px serif";
+        context.font = 20*scale+"px serif";
         context.textBaseline = "middle";
         context.textAlign = 'center';
-        context.fillText('1243', centerX+50, centerY-375);
+        context.fillText('1243', centerX+50*scale, centerY-375*scale);
         context.restore()
     }
-    //#ECBA1C
 }
 
 
