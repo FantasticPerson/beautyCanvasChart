@@ -2,7 +2,7 @@
  * @Author: dandan.wu 
  * @Date: 2018-05-07 10:22:35 
  * @Last Modified by: dandan.wu
- * @Last Modified time: 2018-05-08 17:57:10
+ * @Last Modified time: 2018-05-09 09:15:08
  */
 
  /*
@@ -85,6 +85,7 @@ function genenrateCanvas(id,dataSet,document){
 
     function drawScaleCircle(){
         context.save()
+        context.strokeStyle = '#008AF8'
         context.scale(1,0.4)
         context.beginPath()
         context.arc(centerX,centerY,500,0,Math.PI*2);
@@ -150,13 +151,7 @@ function genenrateCanvas(id,dataSet,document){
 
 
         if(deg >= Math.PI/2-gap/2 && deg <= Math.PI/2+gap/2){
-            context.save();
-            context.fillStyle = "#123";
-            context.font = 20+"px serif";
-            context.textBaseline = "middle";
-            context.textAlign = 'center';
-            context.fillText('666'+i, centerX, centerY-200);
-            context.restore()
+            drawTitle(i)
         }
 
         else {
@@ -182,7 +177,76 @@ function genenrateCanvas(id,dataSet,document){
         }
     }
 
-    
+    function drawTitle(i){
+        // console.log('stroke')
+
+        context.save();
+        context.fillStyle = "#ECBA1C";
+        context.font = 40+"px serif";
+        context.textBaseline = "middle";
+        context.textAlign = 'center';
+        context.fillText('公安局'+i, centerX, centerY-460);
+        context.restore()
+
+
+
+        context.save()
+        context.fillStyle = 'rgba(236, 186, 28,0.3)'
+        context.moveTo(centerX-100,centerY-430)
+        context.rect(centerX-100,centerY-430,200,80)
+        context.fill()
+        context.restore()
+
+        context.save()
+        context.lineWidth = 2
+        context.beginPath()
+        context.strokeStyle = '#ECBA1C'
+        context.moveTo(centerX-100,centerY-430)
+        context.lineTo(centerX+100,centerY-430)
+        context.closePath()
+        context.stroke()
+
+        context.beginPath()
+        context.strokeStyle = '#ECBA1C'
+        context.moveTo(centerX-100,centerY-350)
+        context.lineTo(centerX+100,centerY-350)
+        context.closePath()
+        context.stroke()
+        context.restore()
+
+        context.save();
+        context.fillStyle = "#FFF";
+        context.font = 23+"px serif";
+        context.textBaseline = "middle";
+        context.textAlign = 'center';
+        context.fillText('共享目录', centerX-50, centerY-405);
+        context.restore()
+
+        context.save();
+        context.fillStyle = "#ECBA1C";
+        context.font = 20+"px serif";
+        context.textBaseline = "middle";
+        context.textAlign = 'center';
+        context.fillText('32', centerX-50, centerY-375);
+        context.restore()
+
+        context.save();
+        context.fillStyle = "#FFF";
+        context.font = 23+"px serif";
+        context.textBaseline = "middle";
+        context.textAlign = 'center';
+        context.fillText('共享数据', centerX+50, centerY-405);
+        context.restore()
+
+        context.save();
+        context.fillStyle = "#ECBA1C";
+        context.font = 20+"px serif";
+        context.textBaseline = "middle";
+        context.textAlign = 'center';
+        context.fillText('1243', centerX+50, centerY-375);
+        context.restore()
+    }
+    //#ECBA1C
 }
 
 
