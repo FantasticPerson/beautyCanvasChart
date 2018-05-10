@@ -2,7 +2,7 @@
  * @Author: dandan.wu 
  * @Date: 2018-05-07 10:22:35 
  * @Last Modified by: dandan.wu
- * @Last Modified time: 2018-05-09 16:23:28
+ * @Last Modified time: 2018-05-09 18:02:11
  */
 
  /*
@@ -73,7 +73,7 @@ function genenrateCanvas(id,dataSet,document){
         for(var i=0;i<60;i++){
             var degree = startDegree - gap * i
             var res = calcPoint(degree,i)
-            drawPoint(res[0],res[1])
+            drawPoint(res[0],res[1],degree)
         }
     
         for(var i=0;i<60;i++){
@@ -87,7 +87,7 @@ function genenrateCanvas(id,dataSet,document){
 
     function drawScaleCircle(){
         context.save()
-        context.strokeStyle = '#008AF8'
+        context.strokeStyle = '#1a336a'
         context.scale(1,0.4)
         context.beginPath()
         context.arc(centerX,centerY,500*scale,0,Math.PI*2);
@@ -126,12 +126,28 @@ function genenrateCanvas(id,dataSet,document){
         return [x,y]
     }
 
-    function drawPoint(x,y){
+    function drawPoint(x,y,degree){
+        var deg = getDegree(degree)
         context.save();
-        context.lineWidth = 8
         context.beginPath()
-        context.strokeStyle = '#008AF8'
-        context.arc(centerX+x,centerY*0.4+y,4,0,Math.PI*2)
+        if(deg >= Math.PI/2-gap/2 && deg <= Math.PI/2+gap/2){
+            var gradient = context.createLinearGradient(centerX+x-20*scale,centerY*0.4+y-20*scale,centerX+x+20*scale,centerY*0.4+y+20*scale);
+            gradient.addColorStop(0,"#f1c43c");
+            gradient.addColorStop(1,"#e1a024");
+            context.lineWidth=20*scale;
+            context.strokeStyle = gradient;
+            // context.strokeStyle = '#008AF8'
+            context.arc(centerX+x,centerY*0.4+y,10*scale,0,Math.PI*2)
+        } else {
+            
+            var gradient = context.createLinearGradient(centerX+x-14*scale,centerY*0.4+y-14*scale,centerX+x+14*scale,centerY*0.4+y+14*scale);
+            gradient.addColorStop(0,"#009CFF");
+            gradient.addColorStop(1,"#6DCA34");
+            context.lineWidth=14*scale;
+            context.strokeStyle = gradient;
+            // context.strokeStyle = '#008AF8'
+            context.arc(centerX+x,centerY*0.4+y,7*scale,0,Math.PI*2)
+        }
         context.stroke();
         context.restore();
     }
@@ -140,7 +156,12 @@ function genenrateCanvas(id,dataSet,document){
         context.save()
         
         context.beginPath()
-        context.strokeStyle = '#008AF8'
+        var gradient = context.createLinearGradient(centerX+x,centerY*0.4+y,endPoint[0]+centerX,endPoint[1]+centerY);
+        gradient.addColorStop(0,"#009CFF");
+        gradient.addColorStop(1,"#6DCA34");
+        // context.lineWidth=24;
+        context.strokeStyle = gradient;
+        // context.strokeStyle = '#008AF8'
         context.moveTo(centerX+x,centerY*0.4+y)
         context.lineTo(endPoint[0]+centerX,endPoint[1]+centerY)
         context.closePath()
